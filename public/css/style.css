@@ -1,0 +1,8 @@
+.bg-auth {
+  background-image: url('/public/svg/loginlogo.svg');
+  width: 40%;
+  background-position: center;
+  background-repeat: 'no-repeat';
+  background-size: cover;
+
+}

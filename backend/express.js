@@ -5,6 +5,8 @@ const app = express()
 
 app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'pug')
+
+app.use('/public', express.static(path.join(__dirname, '../public')))
 app.use(express.urlencoded({ extended: false }))
 
 require('./useRouters')(app)

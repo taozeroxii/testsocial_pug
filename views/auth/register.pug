@@ -1,0 +1,27 @@
+extends ../layouts/auth
+
+block content
+      h1
+        i.bi.bi-person-plus
+        span.ms-2 สมัครสมาชิก
+        hr
+      form(action="/auth/login", method="post")
+        .mb-3
+          label#inputEmail.form-label
+            i.bi.bi-envelope-fill
+            span.ms-1 ที่อยู่อีเมล :
+          input#inputEmail.form-control(type="email" name="email" placeholder="กรุณาระบุที่อยู่อีเมล" required)
+        .mb-3
+          label#inputPassword.form-label
+            i.bi.bi-key
+            span.ms-1 รหัสผ่าน :
+          input#inputPassword.form-control(type="password" placeholder="กรุณาระบุรหัสผ่าน"  name="password" required)
+        .mb-3
+          label#inputPassword.form-label
+            i.bi.bi-key
+            span.ms-1 รหัสผ่าน :
+          input#inputPassword.form-control(type="password" placeholder="กรุณาระบุรหัสผ่านอีกครั้ง"  name="password" required)
+        .d-grid.mt-3
+          button.btn.btn-primary สมัครสมาชิก
+        .d-grid
+          a.btn.btn-secondary.mt-2(href="/auth/login") ย้อนกลับ
