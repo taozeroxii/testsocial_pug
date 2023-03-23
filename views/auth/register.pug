@@ -5,7 +5,7 @@ block content
         i.bi.bi-person-plus
         span.ms-2 สมัครสมาชิก
         hr
-      form(action="/auth/login", method="post")
+      form(action="/auth/register" method="post")
         .mb-3
           label#inputEmail.form-label
             i.bi.bi-envelope-fill
@@ -15,13 +15,13 @@ block content
           label#inputPassword.form-label
             i.bi.bi-key
             span.ms-1 รหัสผ่าน :
-          input#inputPassword.form-control(type="password" placeholder="กรุณาระบุรหัสผ่าน"  name="password" required)
+          input#inputPassword.form-control(type="password" placeholder="กรุณาระบุรหัสผ่าน" minlength = "8" name="password" required)
         .mb-3
           label#inputPassword.form-label
             i.bi.bi-key
-            span.ms-1 รหัสผ่าน :
-          input#inputPassword.form-control(type="password" placeholder="กรุณาระบุรหัสผ่านอีกครั้ง"  name="password" required)
+            span.ms-1 ยืนยันรหัสผ่าน :
+          input#inputPassword.form-control(type="password" placeholder="กรุณาระบุรหัสผ่านอีกครั้ง"  minlength = "8"  name="password2" required)
         .d-grid.mt-3
-          button.btn.btn-primary สมัครสมาชิก
+          button.btn.btn-primary(type="submit") สมัครสมาชิก
         .d-grid
           a.btn.btn-secondary.mt-2(href="/auth/login") ย้อนกลับ
