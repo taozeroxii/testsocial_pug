@@ -2,8 +2,9 @@ const path = require('path')
 const express = require('express')
 const session = require('express-session')
 const flash = require('connect-flash')
-const useShowflash = require('./useShowFlash')
+const useGlobalData = require('./useGlobalData')
 const userErrorHandler = require('./userErrorHandler')
+const passport = require('passport')
 const app = express()
 const isProd = require('../utils/isProds')
 const ms = require('ms')
@@ -24,15 +25,13 @@ const sessionOptions = {
 
 app.use(express.urlencoded({ extended: false }))
 app.use(session(sessionOptions))
-app.use('/public', express.static(path.join(__dirname, '../public')))
 app.use(flash())
-app.use(useShowflash)
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(useGlobalData)
+app.use('/public', express.static(path.join(__dirname, '../public')))
 
 require('./useRouters')(app)
-
-app.get('/', (req, res) => {
-  res.end('test')
-})
 
 app.use(userErrorHandler)
 

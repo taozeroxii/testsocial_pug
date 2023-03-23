@@ -15,20 +15,20 @@ const schema = new Schema(
   { timestamps: true }
 )
 
-const presetPassword = async function (next) {
+const preSetPassword = async function (next) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, +process.env.SALT_ROUND)
   }
   next()
 }
 
-schema.pre('save', presetPassword)
-schema.pre('updateOne', presetPassword)
+schema.pre('save', preSetPassword)
+schema.pre('updateOne', preSetPassword)
 
 schema.methods.comparePassword = async function (password) {
-  const result = await bcrypt(password, this.password)
+  const result = await bcrypt.compare(password, this.password)
   if (!result) {
-    throw new Error('ชื่อผู้ใช้งานไม่ถูกต้อง')
+    throw new Error('ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง')
   }
   return result
 }

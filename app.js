@@ -18,6 +18,7 @@ const connectMongoDB = require('./backend/connectMongoDB')
 const startApp = async () => {
   try {
     await connectMongoDB()
+    require('./backend/usePassport')
     app.listen(PORT, () => {
       console.log(`Server is started on http://localhost:${PORT}`)
     })

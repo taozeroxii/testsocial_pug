@@ -1,4 +1,4 @@
-const Users = require('../../modules/Users')
+const Users = require('../../models/Users')
 const validateRegister = require('../../validates/validateRegister')
 
 module.exports = [
