@@ -4,6 +4,7 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const useGlobalData = require('./useGlobalData')
 const userErrorHandler = require('./userErrorHandler')
+const useRedisConnect = require('./useRadisConnect')
 const passport = require('passport')
 const app = express()
 const isProd = require('../utils/isProds')
@@ -12,6 +13,7 @@ app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'pug')
 
 const sessionOptions = {
+  store: useRedisConnect(session),
   secret: process.env.SECRET_KEY,
   cookie: {
     httpOnly: true,
