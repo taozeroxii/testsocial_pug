@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose')
+const { DateTime } = require('luxon')
 const bcrypt = require('bcrypt')
 const schema = new Schema(
   {
@@ -10,6 +11,27 @@ const schema = new Schema(
     password: {
       type: String,
       required: true
+    },
+    displayName: String,
+    birthDate: {
+      type: Date,
+      get (date) {
+        const d = DateTime.fromJSDate(date)
+        return d.toISODate()
+      }
+    },
+    avatarUrl: {
+      type: String,
+      get (url) {
+        if (!url) {
+          return 'https://via.placeholder.com/150'
+        }
+      }
+    },
+    gender: {
+      type: String,
+      enum: ['male', 'female', 'none'],
+      default: 'none'
     }
   },
   { timestamps: true }

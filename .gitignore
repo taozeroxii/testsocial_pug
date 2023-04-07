@@ -1,3 +1,7 @@
 node_modules/
 .env.prod
 .env
+temp/*
+!temp/.gitignore
+public/avatars/*
+!public/avatars/.gitignore

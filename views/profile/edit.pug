@@ -1,0 +1,36 @@
+extends ../layouts/feed
+
+block content
+  h1 แก้ไขโปรไฟล์
+  hr
+  .card
+    .card-body
+      form.row(action="/profile?_method=put" method="post" enctype="multipart/form-data")
+        .col-12.col-md-6
+          img.d-block.rounded-circle.mx-auto.mb-3.shadow(src=auth.avatarUrl, alt="")
+          label.form-label(for="inputAvatar") รูปประจำตัว
+          input#inputAvatar.form-control(type="file" name="avatar" accept="image/*")
+        .col-12.col-md-6.mt-3.mt-md-0
+          .mb-3
+            label.form-label(for="inputdisplayName") ชื่อที่แสดงผล
+            input#inputdisplayName.form-control(type="text" maxlength="50" name="displayName" value=auth.displayName)
+          .mb-3
+            label.form-label(for="inputbirthDate") วันเกิด
+            input#inputbirthDate.form-control(type="date" name="birthDate" value=auth.birthDate)
+          .mb-3
+            label.form-label.me-4 เพศ
+            label.form-check-inline
+              input.form-check-input(type="radio" name="gender" value="male" checked=auth.gender === 'male')
+              span.form-check-label ชาย
+
+            label.form-check-inline
+              input.form-check-input(type="radio" name="gender" value="female" checked=auth.gender === 'female')
+              span.form-check-label หญิง
+
+            label.form-check-inline
+              input.form-check-input(type="radio" name="gender" value="none" checked=auth.gender === 'none' || !auth.gender)
+              span.form-check-label ไม่ระบุเพศ
+          .col-12.d-flex.justify-content-end
+            button.btn.btn-primary บันทึก
+
+
