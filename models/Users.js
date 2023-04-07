@@ -1,12 +1,19 @@
 const { Schema, model } = require('mongoose')
 const { DateTime } = require('luxon')
 const bcrypt = require('bcrypt')
+const faker = require('@faker-js/faker').default
 const schema = new Schema(
   {
     email: {
       type: String,
       required: true,
       unique: true
+    },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      default: () => `${faker.internet.userName()}_${faker.random.alphaNumeric(5)}`
     },
     password: {
       type: String,
