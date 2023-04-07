@@ -1,0 +1,27 @@
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+  .container
+    a.navbar-brand Social
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#mainnav')
+      span.navbar-toggler-icon
+    #mainnav.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+        li.nav-item
+          a.nav-link(href="#") placeholder
+        li.nav-item
+          a.nav-link(href="#") placeholder
+      ul.navbar-nav.mr-auto
+        if !auth
+          li.nav-item
+            a.nav-link(href="/auth/login") เข้าสู่ระบบ
+          li.nav-item
+            a.btn.btn-primary.ms-2(href="/auth/register") สมัครสมาชิก
+        else
+          li.nav-item.dropdown
+          a.nav-link.dropdown-toggle(data bs-toggle='dropdown')= auth.email
+            ul.dropdown-menu
+              li
+                a.dropdown-item(href=`/profile/${auth._id}`) โปรไฟล์
+                a.dropdown-item(href="/profile/edit") แก้ไขโปรไฟล์
+              li
+                hr.dropdown-divider
+                a.dropdown-item(href="/profile/edit") แก้ไขโปรไฟล์
