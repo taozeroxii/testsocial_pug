@@ -6,7 +6,7 @@ const upload = multer({ dest: path.join(__dirname, '../../temp') })
 const validateProfile = require('../../validates/validateProfile')
 
 module.exports = [
-  upload.none(), // form-data => req.body (urlencoded)
+  upload.single('avatar'), // form-data => req.body (urlencoded)
   validateProfile,
   async (req, res) => {
     if (req.file) {
@@ -19,6 +19,7 @@ module.exports = [
       await fs.promises.unlink(req.file.path)
       req.user.avatarUrl = avatarUrl
     }
+    req.user.username = req.body.username
     req.user.displayName = req.body.displayName
     req.user.gender = req.body.gender
     req.user.birthDate = req.body.birthDate

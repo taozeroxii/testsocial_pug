@@ -12,6 +12,10 @@ block content
           input#inputAvatar.form-control(type="file" name="avatar" accept="image/*")
         .col-12.col-md-6.mt-3.mt-md-0
           .mb-3
+            label.form-label(for="inputUsername") Urlname
+            input#inputdisplayName.form-control(type="text" minlength="3" maxlength="50" name="username" value=auth.username)
+
+          .mb-3
             label.form-label(for="inputdisplayName") ชื่อที่แสดงผล
             input#inputdisplayName.form-control(type="text" maxlength="50" name="displayName" value=auth.displayName)
           .mb-3

@@ -2,6 +2,7 @@ const Joi = require('Joi')
 const validateSchema = require('../utils/validateSchema')
 
 const schema = Joi.object({
+  username: Joi.string().required().alphanum().min(3).max(50),
   displayName: Joi.string()
     .max(50)
     .allow('')
