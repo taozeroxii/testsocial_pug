@@ -1,0 +1,11 @@
+extends layouts/feed
+
+block content
+  .row
+    .col-12.col-md-4.col-lg-3
+      .card
+        .card-body
+          img.d-block.rounded-circle.mx-auto.mb-3.shadow(src=user.avatarUrl , alt=user.displayName)
+          h2.h5.text-center=user.displayName
+          p.text-secondary= user.username
+

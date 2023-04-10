@@ -44,15 +44,24 @@ const schema = new Schema(
   { timestamps: true }
 )
 
-const preSetPassword = async function (next) {
-  if (this.isModified('password')) {
+const preSetPassword = async function (next, docs) {
+  // console.log(docs)
+  if (this.isModified && this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, +process.env.SALT_ROUND)
+  }
+  if (docs) {
+    docs = await Promise.all(
+      docs.map(async (doc) => {
+        doc.password = await bcrypt.hash(doc.password, +process.env.SALT_ROUND)
+      })
+    )
   }
   next()
 }
 
 schema.pre('save', preSetPassword)
 schema.pre('updateOne', preSetPassword)
+schema.pre('insertMany', preSetPassword)
 
 schema.methods.comparePassword = async function (password) {
   const result = await bcrypt.compare(password, this.password)
